@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "  ",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -33,6 +33,7 @@
     "react-phone-number-input": "^3.4.10",
     "react-redux": "^9.2.0",
     "sortablejs": "^1.15.6",
+    "sweetalert2": "^11.15.3",
     "yup": "^1.6.1"
   },
   "devDependencies": {

@@ -10,26 +10,16 @@ const ModalValuesContainer = () => {
 
   const { formValues } = useSelector((state: RootState) => state.dynamicForm);
 
-  const { isFromModal } = useSelector((state: RootState) => state.modal);
+  const { isFormModal } = useSelector((state: RootState) => state.modal);
   return (
     <>
-      {isFromModal && (
+      {isFormModal && (
         <div
+          className={`flex flex-col gap-8 z-[9999] absolute justify-center  w-[80vw] sm:w-[50vw] lg:w-[35vw]`}
           style={{
             boxShadow:
               "0 10px 20px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1)",
-            zIndex: 9999, // Ensure this modal is on top of everything
-            position: "fixed", // Fixed position to overlay it on top of the screen
-            top: "50%", // Center it vertically
-            left: "50%", // Center it horizontally
-            transform: "translate(-50%, -50%)", // Ensure centering
-            width: "50vw", // Adjust the width as per requirement
-            height: "80vh", // Adjust the height
-            backgroundColor: "white", // Background color
-            borderRadius: "8px", // Rounded corners
-            padding: "20px", // Padding for content inside the modal
           }}
-          className="relative flex flex-col gap-8"
         >
           <div className="flex h-10 w-full px-3 items-center justify-start bg-slate-300 rounded-t-lg space-x-3">
             <Tooltip title="Close" arrow>

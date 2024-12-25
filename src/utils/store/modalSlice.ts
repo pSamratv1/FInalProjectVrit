@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export interface ModalState {
   isWindowModal: boolean;
   isWindowModalMini: boolean;
-  isFromModal: boolean;
+  isFormModal: boolean;
   isDynamicModal: boolean;
   isDynamicModalMini: boolean;
 }
@@ -13,7 +13,7 @@ const initialState: ModalState = {
   isDynamicModal: false,
   isDynamicModalMini: false,
   isWindowModalMini: false,
-  isFromModal: false,
+  isFormModal: false,
 };
 
 const modalSlice = createSlice({
@@ -50,10 +50,10 @@ const modalSlice = createSlice({
       state.isDynamicModalMini = false;
     },
     formModalOpen: (state) => {
-      state.isFromModal = true;
+      state.isFormModal = true;
     },
     formModalClose: (state) => {
-      state.isFromModal = false;
+      state.isFormModal = false;
     },
   },
 });

@@ -12,14 +12,24 @@ const App = () => {
   );
 
   const isFormFieldsEmpty = formFields.length === 0;
+  const isFormModal = useSelector((state: RootState) => state.modal);
 
   return (
     <>
       <ModalValuesContainer />
-      <main className="h-screen w-screen bg-slate-100 grid grid-cols-2">
+      {/* <div
+        className={` ${
+          isFormModal ? "absolute h-full w-screen bg-black bg-opacity-50" : ""
+        }`}
+      ></div> */}
+      <main
+        className={`content absolute h-full w-screen bg-slate-100 grid lg:grid-cols-2 grid-cols-1 space-y-16 pt-8 "`}
+      >
         <div
-          className={`${
-            isFormFieldsEmpty ? "col-span-2" : "col-span-1"
+          className={`${!isFormModal ? "opacity-[50%]" : ""} ${
+            isFormFieldsEmpty
+              ? "lg:col-span-2 col-span-1"
+              : "lg:col-span-1 col-span-1"
           } relative flex justify-center items-center`}
         >
           <WindowContainer>
@@ -28,7 +38,11 @@ const App = () => {
         </div>
 
         {!isFormFieldsEmpty && (
-          <div className="flex col-span-1 justify-center items-center">
+          <div
+            className={`"${
+              !isFormModal ? "opacity-[50%]" : ""
+            } w-full flex col-span-1 justify-center items-center pb-8"`}
+          >
             <DynamicContainer>
               <DynamicBuilder />
             </DynamicContainer>

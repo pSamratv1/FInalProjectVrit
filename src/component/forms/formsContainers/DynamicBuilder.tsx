@@ -18,7 +18,8 @@ import {
 } from "../../../utils/store/dynamicSlice";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import Sortable from "sortablejs";
-import { formModalOpen } from "../../../utils/store/modalSlice";
+
+import Swal from "sweetalert2";
 
 const DynamicBuilder: React.FC = () => {
   const dispatch = useDispatch();
@@ -100,18 +101,36 @@ const DynamicBuilder: React.FC = () => {
 
     const schema = generateValidationSchema(formFields);
     try {
+      // Validate form values against the schema
       await schema.validate(formValues, { abortEarly: false });
       setErrors({});
+
+      // Proceed only if there are no validation errors
       setSubmittedValues(formValues);
       console.log(submittedValues);
       dispatch(addFormValues(formValues));
 
+      // Reset form values after successful submission
       const initialValues: FormValues = {};
       formFields.forEach((field: FormDataSchema) => {
         initialValues[field.name] = field.type === "checkbox" ? false : "";
       });
       setFormValues(initialValues);
+      const formattedValues = Object.entries(formValues)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join("\n");
+
+      Swal.fire({
+        title: "Form Data",
+        html: `<pre>${formattedValues}</pre>`,
+        icon: "success",
+        confirmButtonText: "OK",
+        customClass: {
+          popup: "shadow-lg rounded-lg",
+        },
+      });
     } catch (err: any) {
+      // Handle validation errors
       if (err instanceof Yup.ValidationError) {
         const newErrors: FormErrors = {};
         err.inner.forEach((e: any) => {
@@ -120,10 +139,10 @@ const DynamicBuilder: React.FC = () => {
           }
         });
         setErrors(newErrors);
+
+        return;
       }
     }
-    alert("Form Submitted successfully");
-    dispatch(formModalOpen());
   };
 
   const handleRemoveField = (fieldName: string) => {
@@ -134,12 +153,12 @@ const DynamicBuilder: React.FC = () => {
   };
 
   return (
-    <form className="flex flex-col space-y-4 text-slate-600 rounded-lg">
-      <div ref={sortableContainerRef} className="space-y-4">
+    <form className="flex flex-col space-y-4 text-slate-600 rounded-lg ">
+      <div ref={sortableContainerRef} className="space-y-4 ">
         {formFields.map((field: FormDataSchema, index: number) => (
           <div
             key={index}
-            className="flex w-full justify-between items-center space-x-8"
+            className="flex w-full justify-between items-center space-x-8 "
           >
             <FieldRenderer
               field={field}

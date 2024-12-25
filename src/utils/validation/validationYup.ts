@@ -9,8 +9,6 @@ export type FormErrors = Record<string, string>;
 
 // Generate a validation schema for the entire form dynamically
 export const generateValidationSchema = (formFields: FormMethodSchema[]) => {
-  // Define the maximum file size (e.g., 5MB)
-  // const MAX_SIZE = 5 * 1024 * 1024; // 5MB in bytes
   const schemaFields: any = {};
 
   formFields.forEach((field) => {
@@ -25,77 +23,60 @@ export const generateValidationSchema = (formFields: FormMethodSchema[]) => {
       case "Input":
         fieldValidation = Yup.string()
           .max(100, "Cannot exceed 100 characters")
-          .required(`${field.errorMessage}`);
+          .required(`${field.label} is required.`);
         break;
 
       case "Email":
         fieldValidation = Yup.string()
           .email("Invalid email format")
-          .required(`${field.errorMessage}`);
-
+          .required(`${field.label} is required.`);
         break;
 
       case "Password":
         fieldValidation = Yup.string()
           .min(8, "Password must be at least 8 characters")
-          .required(`${field.errorMessage}`);
-
+          .required(`${field.label} is required.`);
         break;
 
       case "ConfirmPassword":
         fieldValidation = Yup.string()
-          .oneOf([Yup.ref("password"), undefined], "Passwords must match")
-          .required(`${field.errorMessage}`);
-
+          .oneOf([Yup.ref("Password"), undefined], "Passwords must match") // Use Yup.ref("Password") without relying on state
+          .required(`${field.label} is required.`);
         break;
 
       case "Checkbox":
         fieldValidation = Yup.boolean()
           .oneOf([true], "This checkbox must be checked")
-          .required(`${field.errorMessage}`);
-
+          .required(`${field.label} is required.`);
         break;
 
       case "Select":
-        fieldValidation = Yup.string().required(`${field.errorMessage}`);
+        fieldValidation = Yup.string().required(`${field.label} is required.`);
         break;
 
       case "Radio":
-        fieldValidation = Yup.string().required(`${field.errorMessage}`);
+        fieldValidation = Yup.string().required(`${field.label} is required.`);
         break;
 
       case "Number":
         fieldValidation = Yup.number()
           .min(1, "Value must be greater than 1")
           .max(100, "Value must be less than 100")
-          .required(`${field.errorMessage}`);
-
+          .required(`${field.label} is required.`);
         break;
 
-      // case "file":
-      //   fieldValidation = Yup.mixed()
-      //     .required("File is required")
-      //     .test("fileSize", "File size is too large", (value) => {
-      //       if (value && value.size) {
-      //         return value.size <= MAX_SIZE; // Check file size
-      //       }
-      //       return true;
-      //     });
-      //   break;
-
       case "Date":
-        fieldValidation = Yup.date().required(`${field.errorMessage}`);
+        fieldValidation = Yup.date().required(`${field.label} is required.`);
         break;
 
       case "Textarea":
         fieldValidation = Yup.string()
           .max(500, "Maximum 500 characters")
-          .required(`${field.errorMessage}`);
-
+          .required(`${field.label} is required.`);
         break;
 
       default:
-        fieldValidation = Yup.string().required(`${field.errorMessage}`);
+        fieldValidation = Yup.string().required(`${field.label} is required.`);
         break;
     }
 

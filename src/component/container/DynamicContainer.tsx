@@ -25,7 +25,7 @@ const DynamicContainer = ({ children }: DynamicContainerProps) => {
               "0 10px 20px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1)",
             zIndex: 1,
           }}
-          className="relative flex flex-col max-w-[50vw] w-[30vw] max-h-[80vh] pb-8 bg-white rounded-lg gap-8 shadow-lg"
+          className="relative flex flex-col lg:max-w-[50vw] lg:w-[30vw] max-w-[85vw] sm:w-[50vw] max-h-[80vh] pb-8 bg-white rounded-lg gap-8 shadow-lg"
         >
           <div className="flex h-10 w-full px-3 items-center justify-start bg-slate-300  rounded-t-lg space-x-3">
             <Tooltip title="Close" arrow>
@@ -52,10 +52,10 @@ const DynamicContainer = ({ children }: DynamicContainerProps) => {
               Dynamic Form
             </div>
             <div className="text-sm text-slate-600 font-normal font-nunito">
-              Ready to use Form Fields with proper validations . . .
+              Ready to use Form Fields with proper validations
             </div>
           </div>
-          <div className="px-20">{children}</div>
+          <div className="px-10">{children}</div>
         </div>
       )}
 

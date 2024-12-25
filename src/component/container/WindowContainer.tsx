@@ -30,9 +30,9 @@ const WindowContainer = ({ children }: WindowContainerProps) => {
           style={{
             boxShadow:
               "0 10px 20px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1)",
-            zIndex: 2, // Ensure this modal is above the other
+            zIndex: 1, // Ensure this modal is above the other
           }}
-          className="relative flex flex-col max-w-[50vw] w-[30vw] max-h-[80vh] pb-8 bg-white rounded-lg gap-8 shadow-lg"
+          className="relative flex flex-col lg:max-w-[50vw] lg:w-[30vw] max-h-[80vh] pb-8 bg-white rounded-lg gap-8 shadow-lg"
         >
           <div className="flex h-10 w-full px-3 items-center justify-start bg-slate-300 rounded-t-lg space-x-3">
             <Tooltip title="Close" arrow>
