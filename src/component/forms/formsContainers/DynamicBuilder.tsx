@@ -103,6 +103,7 @@ const DynamicBuilder: React.FC = () => {
       await schema.validate(formValues, { abortEarly: false });
       setErrors({});
       setSubmittedValues(formValues);
+      console.log(submittedValues);
       dispatch(addFormValues(formValues));
 
       const initialValues: FormValues = {};

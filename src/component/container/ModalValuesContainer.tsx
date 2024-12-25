@@ -1,9 +1,8 @@
-import { useState } from "react";
 import Tooltip from "@mui/material/Tooltip";
 
 import { useSelector } from "react-redux";
 import { RootState } from "../../utils/store/store";
-import modalSlice, { formModalClose } from "../../utils/store/modalSlice";
+import { formModalClose } from "../../utils/store/modalSlice";
 import { useDispatch } from "react-redux";
 
 const ModalValuesContainer = () => {

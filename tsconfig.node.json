@@ -19,7 +19,9 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true, // Ensures better compatibility with CommonJS modules
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["vite.config.ts"]
 }
